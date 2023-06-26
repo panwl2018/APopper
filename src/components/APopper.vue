@@ -27,6 +27,7 @@
 
 <script>
 import { createPopper } from "@popperjs/core";
+import {createUuid} from "@/utils/index";
 export default {
   name: "APopper",
   props: {
@@ -72,14 +73,14 @@ export default {
   },
   data() {
     return {
-      refsId: Date.now().toString(), // 创建tips实例的唯一标识
+      refsId: createUuid(), // 创建tips实例的唯一标识
       activeTipsId: "", // 当前鼠标需要显示的气泡实例Id
       showTimmer: null, // 防抖计时器
       renderTipsContent: true, // 性能优化参数，对不满足触发tips的情况，不渲染空的tipsContent承载容器，减少初始化的dom渲染
     };
   },
   mounted() {
-    this.calcShowTipsContent();
+    this.calcShowTipsByLength();
     // 性能优化
     if (this.autoCalcShow && this.renderTipsContent) {
       this.init();
@@ -144,7 +145,7 @@ export default {
         );
       });
     },
-    calcShowTipsContent() {
+    calcShowTipsByLength() {
       // 判断是否需要通过autoCalcShow长度计算出现气泡
       const targetRefs = this.$refs[`target_${this.refsId}`];
       const canvas = document.createElement("canvas");
@@ -184,7 +185,7 @@ export default {
     }
   }
 
-  /**添加剪头样式*/
+  /**添加箭头样式*/
   .arrow {
     visibility: hidden;
     &::before {
