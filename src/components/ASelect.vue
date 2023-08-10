@@ -20,7 +20,7 @@
 
 <script>
 import { createPopper } from "@popperjs/core";
-import {createUuid} from "@/utils/index";
+import { createUuid } from "@/utils/index";
 export default {
   props: {
     width: {
@@ -158,13 +158,13 @@ export default {
     border-top-width: 0px;
 
     &::before {
-      // position: absolute;
-      // width: 8px;
-      // height: 8px;
-      // // background: #333;
-      // border: 1px solid #ebeef5;
-      // border-bottom: none;
-      // border-right: none;
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      // background: #333;
+      border: 1px solid #ebeef5;
+      border-bottom: none;
+      border-right: none;
     }
   }
 
